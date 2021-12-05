@@ -127,4 +127,7 @@ export class AppComponent implements OnInit {
         }
       });
   }
+  wrongRoute(): void {
+    this.router.navigate(['subreddits-information']);
+  }
 }
