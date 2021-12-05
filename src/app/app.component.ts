@@ -61,6 +61,9 @@ export class AppComponent implements OnInit {
     this.router.navigate(['users-information']);
   }
   backToHome() {
+    this.subredditAuthenticationService.subredditInformation = false;
+    this.UsersAuthentication.usersInformation = false;
+    this.resumeAuthenticationService.rutvikResume = false;
     this.one.clear();
     this.lazyComponent = false;
     this.homescreenService.homescreen = true;
