@@ -14,6 +14,7 @@ import { SubredditAuthenticationService } from './route-guard/subreddit-authenti
 import { UsersAuthentication } from './route-guard/users-authentication.service';
 import { HomescreenService } from './homescreen.service';
 import { ResumeAuthenticationService } from './route-guard/resume-authentication.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
   lazyComponent: boolean = false;
   @ViewChild('one', { read: ViewContainerRef })
   one: ViewContainerRef;
+  loading: boolean = true;
 
   constructor(
     private router: Router,
@@ -38,7 +40,8 @@ export class AppComponent implements OnInit {
     private resumeAuthenticationService: ResumeAuthenticationService,
     private componentFactoryResolver: ComponentFactoryResolver,
     private compiler: Compiler,
-    private injector: Injector
+    private injector: Injector,
+    private spinner: NgxSpinnerService
   ) {}
   SubredditsInformation() {
     this.one.clear();
@@ -89,7 +92,7 @@ export class AppComponent implements OnInit {
     this.componentsType.userComponent = false;
     this.router.navigate(['rutvik-resume']);
   }
-  ngOnInit() {}
+
   displayLazymoduleComponent() {
     this.lazyComponent = true;
     this.componentsType.userComponent = false;
@@ -132,5 +135,13 @@ export class AppComponent implements OnInit {
   }
   wrongRoute(): void {
     this.router.navigate(['subreddits-information']);
+  }
+  ngOnInit() {
+    this.spinner.show();
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+      this.loading = false;
+    }, 3000);
   }
 }

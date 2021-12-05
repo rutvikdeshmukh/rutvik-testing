@@ -1,75 +1,13 @@
-<app-home
-  *ngIf="
-    !componentsType.subredditComponent &&
-    !componentsType.userComponent &&
-    !varRutvikResume &&
-    !lazyComponent &&
-    homescreenService.homescreen
-  "
->
-</app-home>
-
-<section class="button-section">
-  <button
-    type="button"
-    *ngIf="!componentsType.subredditComponent"
-    class="btn btn-primary"
-    (click)="SubredditsInformation()"
-  >
-    Subreddit's(RouteActivate(T))
-  </button>
-  &nbsp;
-  <button
-    type="button"
-    *ngIf="!componentsType.userComponent"
-    class="btn btn-primary"
-    (click)="usersInformation()"
-  >
-    User's(RouteActivate(T))
-  </button>
-  &nbsp;
-  <button
-    type="button"
-    class="btn btn-primary"
-    (click)="backToHome()"
-    *ngIf="
-      componentsType.userComponent ||
-      componentsType.subredditComponent ||
-      varRutvikResume ||
-      lazyComponent
-    "
-  >
-    Home Screen
-  </button>
-  &nbsp;
-  <button
-    type="button"
-    class="btn btn-primary"
-    (click)="homeScreen()"
-    *ngIf="!homescreenService.homescreen"
-  >
-    Home screen
-  </button>
-  &nbsp;
-  <button
-    type="button"
-    class="btn btn-primary"
-    (click)="rutvikResume()"
-    *ngIf="!varRutvikResume"
-  >
-    Lazy Load Rutvik-Resume Module(Routing)
-  </button>
-  &nbsp;
-  <button
-    class="btn btn-primary"
-    (click)="displayLazymoduleComponent()"
-    *ngIf="!lazyComponent"
-  >
-    lazy Load Screen's Module(Manual)
-  </button>
-  &nbsp;
-  <button
-    type="button"
+<ngx-spinner
+  *ngIf="loading"
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="large"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+></ngx-spinner>
+<div *ngIf="!loading">
+  <app-home
     *ngIf="
       !componentsType.subredditComponent &&
       !componentsType.userComponent &&
@@ -77,12 +15,99 @@
       !lazyComponent &&
       homescreenService.homescreen
     "
-    (click)="wrongRoute()"
-    class="btn btn-primary"
   >
-    Subreddit's(RouteActivate(F))
-  </button>
-</section>
+  </app-home>
 
-<router-outlet *ngIf="!lazyComponent"> </router-outlet>
-<ng-template #one> </ng-template>
+  <section class="button-section">
+    <button
+      mdbRipple
+      rippleColor="dark"
+      type="button"
+      class="btn btn-outline-primary btn-rounded"
+      *ngIf="!componentsType.subredditComponent"
+      (click)="SubredditsInformation()"
+    >
+      Subreddit's(RouteActivate(T))
+    </button>
+    &nbsp;
+    <button
+      mdbRipple
+      rippleColor="dark"
+      type="button"
+      class="btn btn-outline-primary btn-rounded"
+      *ngIf="!componentsType.userComponent"
+      (click)="usersInformation()"
+    >
+      User's(RouteActivate(T))
+    </button>
+    &nbsp;
+    <button
+      mdbRipple
+      rippleColor="dark"
+      type="button"
+      class="btn btn-outline-primary btn-rounded"
+      (click)="backToHome()"
+      *ngIf="
+        componentsType.userComponent ||
+        componentsType.subredditComponent ||
+        varRutvikResume ||
+        lazyComponent
+      "
+    >
+      Home Screen
+    </button>
+    &nbsp;
+    <button
+      mdbRipple
+      rippleColor="dark"
+      type="button"
+      class="btn btn-outline-primary btn-rounded"
+      (click)="homeScreen()"
+      *ngIf="!homescreenService.homescreen"
+    >
+      Home screen
+    </button>
+    &nbsp;
+    <button
+      mdbRipple
+      rippleColor="dark"
+      type="button"
+      class="btn btn-outline-primary btn-rounded"
+      (click)="rutvikResume()"
+      *ngIf="!varRutvikResume"
+    >
+      Lazy Load Rutvik-Resume Module(Routing)
+    </button>
+    &nbsp;
+    <button
+      mdbRipple
+      rippleColor="dark"
+      type="button"
+      class="btn btn-outline-primary btn-rounded"
+      (click)="displayLazymoduleComponent()"
+      *ngIf="!lazyComponent"
+    >
+      lazy Load Screen's Module(Manual)
+    </button>
+    &nbsp;
+    <button
+      mdbRipple
+      rippleColor="dark"
+      type="button"
+      class="btn btn-outline-primary btn-rounded"
+      *ngIf="
+        !componentsType.subredditComponent &&
+        !componentsType.userComponent &&
+        !varRutvikResume &&
+        !lazyComponent &&
+        homescreenService.homescreen
+      "
+      (click)="wrongRoute()"
+    >
+      Subreddit's(RouteActivate(F))
+    </button>
+  </section>
+
+  <router-outlet *ngIf="!lazyComponent"> </router-outlet>
+  <ng-template #one> </ng-template>
+</div>
