@@ -15,6 +15,7 @@ import { UsersAuthentication } from './route-guard/users-authentication.service'
 import { HomescreenService } from './homescreen.service';
 import { ResumeAuthenticationService } from './route-guard/resume-authentication.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ErrorAuthenticationService } from './route-guard/error-authentication.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -41,7 +42,8 @@ export class AppComponent implements OnInit {
     private componentFactoryResolver: ComponentFactoryResolver,
     private compiler: Compiler,
     private injector: Injector,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private errorAuthenticationService: ErrorAuthenticationService
   ) {}
   SubredditsInformation() {
     this.one.clear();
@@ -64,6 +66,7 @@ export class AppComponent implements OnInit {
     this.router.navigate(['users-information']);
   }
   backToHome() {
+    this.errorAuthenticationService.error = false;
     this.subredditAuthenticationService.subredditInformation = false;
     this.UsersAuthentication.usersInformation = false;
     this.resumeAuthenticationService.rutvikResume = false;

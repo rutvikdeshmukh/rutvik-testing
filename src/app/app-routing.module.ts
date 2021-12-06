@@ -7,6 +7,7 @@ import { SubredditAuthenticationService } from './route-guard/subreddit-authenti
 import { UsersAuthentication } from './route-guard/users-authentication.service';
 import { WrongComponent } from './wrong/wrong.component';
 import { ResumeAuthenticationService } from './route-guard/resume-authentication.service';
+import { ErrorAuthenticationService } from './route-guard/error-authentication.service';
 const routes: Routes = [
   {
     path: 'subreddits-information',
@@ -22,7 +23,11 @@ const routes: Routes = [
     path: 'user-entered-subreddit/:id',
     component: UserEnteredSubredditComponent,
   },
-  { path: 'error', component: WrongComponent },
+  {
+    path: 'error',
+    component: WrongComponent,
+    canActivate: [ErrorAuthenticationService],
+  },
   {
     path: 'rutvik-resume',
     loadChildren: () =>
